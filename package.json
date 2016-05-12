@@ -1,0 +1,12 @@
+{
+  "name": "super-mario-es6",
+  "version": "0.0.0",
+  "devDependencies": {
+    "http-server": "^0.9.0",
+    "webpack": "^1.13.0"
+  },
+  "scripts": {
+    "webpack": "webpack",
+    "start": "http-server"
+  }
+}
