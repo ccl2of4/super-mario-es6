@@ -42,13 +42,6 @@ export default class Entity {
     this.physics = physics;
   }
 
-  x(value) {
-    if (typeof value !== 'undefined') {
-      this.node.style.left = value;
-    }
-    return parseFloat(this.node.style.left);
-  }
-
   frame() {
     return [
       this.left(),
@@ -56,6 +49,13 @@ export default class Entity {
       this.bottom(),
       this.top()
     ]
+  }
+
+  x(value) {
+    if (typeof value !== 'undefined') {
+      this.node.style.left = value;
+    }
+    return parseFloat(this.node.style.left);
   }
 
   y(value) {
