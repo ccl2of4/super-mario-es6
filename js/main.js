@@ -45,23 +45,31 @@ world.addEntity(ground);
 ground.x(0);
 ground.y(0)
 
-var ground2 = new Entity(20, 150);
-ground2.setAnimator(new StaticAnimator(groundImage));
-world.addEntity(ground2);
-ground2.x(2000);
-ground2.y(0)
+for(let i = 0; i < 20; ++i) {
+  let platform = new Entity(100, 20);
+  platform.setAnimator(new StaticAnimator(groundImage));
+  platform.x(1000 + (i % 2 == 0 ? 200 : 0));
+  platform.y(i * 100);
+  world.addEntity(platform);
+}
 
-var nums = [50, 100, 150, 200, 250, 300, 350, 400];
-nums.forEach((x) => {
+for(let i = 0; i < 50; ++i) {
+  let step = new Entity(100, 10);
+  step.setAnimator(new StaticAnimator(groundImage));
+  step.x(1500 + (i * 50));
+  step.y(10 + (i * 10));
+  world.addEntity(step);
+}
+
+for (let i = 0; i < 10; ++i) {
   let cpumario = new Entity(46, 80);
   cpumario.setAnimator(new Animator(marioImages));
   cpumario.setController(new AIController(mario));
   cpumario.setPhysics(new Physics());
   world.addEntity(cpumario);
-  cpumario.x(x)
+  cpumario.x(i * 50)
   cpumario.y(150);
-});
-
+}
 
 var view = new View(mario);
 

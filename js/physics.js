@@ -78,7 +78,7 @@ export default class Physics {
       this.deltaX = vel * sign;
     }
 
-    //deltaX
+    // deltaX
     world.getEntities()
     .filter((otherEntity) => otherEntity !== entity)
     .forEach((otherEntity) => {
