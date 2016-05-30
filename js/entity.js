@@ -9,6 +9,7 @@ export default class Entity {
     this.walkSpeed = 1;
     this.runFactor = 2;
     this.jumpSpeed = 20;
+    this.behaviors = [];
   }
 
   update(world) {
@@ -16,30 +17,23 @@ export default class Entity {
     if (this.controller) {
       inputState = this.controller.getState();
     }
-    if (this.animator) {
-      this.animator.update(inputState);
+    this.behaviors.forEach((behavior) => {
+      behavior.update(inputState, world);
+    });
+  }
+
+  addBehavior(behavior) {
+    if (typeof behavior.setEntity !== 'undefined') {
+      behavior.setEntity(this);
     }
-    if (this.physics) {
-      this.physics.update(inputState, world);
-    }
+    this.behaviors.push(behavior);
   }
 
   setController(controller) {
     if (typeof controller.setEntity !== 'undefined') {
       controller.setEntity(this);
     }
-
     this.controller = controller;
-  }
-
-  setAnimator(animator) {
-    animator.setEntity(this);
-    this.animator = animator;
-  }
-
-  setPhysics(physics) {
-    physics.setEntity(this);
-    this.physics = physics;
   }
 
   frame() {

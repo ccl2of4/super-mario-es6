@@ -16,7 +16,9 @@ export default class World {
 
   update() {
     var self = this;
-    this.entities.forEach((entity) => entity.update(self));
+    this.entities.forEach((entity) => {
+      entity.update(self);
+    });
   }
 
 }
