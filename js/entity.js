@@ -29,6 +29,14 @@ export default class Entity {
     this.behaviors.push(behavior);
   }
 
+  getBehavior(className) {
+    let behavior = this.behaviors.find(behavior => behavior.constructor.name == className);
+    if (!behavior) {
+      throw `Behavior with class ${className} not found.`;
+    }
+    return behavior;
+  }
+
   setController(controller) {
     if (typeof controller.setEntity !== 'undefined') {
       controller.setEntity(this);
