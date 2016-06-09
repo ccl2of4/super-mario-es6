@@ -2,6 +2,7 @@ import Entity from './entity'
 import Physics from './physics'
 import Jumping from './jumping'
 import Walking from './walking'
+import StairClimbing from './stairclimbing'
 import { Animator, StaticAnimator } from './animator'
 
 export default class EntityFactory {
@@ -35,6 +36,7 @@ export default class EntityFactory {
     mario.addBehavior(new Physics());
     mario.addBehavior(new Walking(walkSpeed, runFactor));
     mario.addBehavior(new Jumping(jumpSpeed));
+    mario.addBehavior(new StairClimbing());
     return mario;
   }
 

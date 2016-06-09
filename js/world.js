@@ -45,7 +45,7 @@ export default class World {
 
   playTheme() {
     this.theme = new Audio('../assets/theme.mp3');
-    this.theme.play();
+    //this.theme.play();
   }
 
 }
