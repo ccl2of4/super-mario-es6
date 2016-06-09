@@ -4,40 +4,41 @@ import {Animator, StaticAnimator} from './animator'
 import UserInput from './userinput'
 import AIController from './ai-controller'
 import Physics from './physics'
-import View from './view'
 
 var world = new World(document.body);
 
 var marioImages = {
   stand: {
-    left: "../images/mariostand.png",
-    right: "../images/mariostand1.png"
+    left: "../assets/mariostand.png",
+    right: "../assets/mariostand1.png"
   },
   walk: {
-    left: "../images/mariowalk.png",
-    right: "../images/mariowalk1.png",
+    left: "../assets/mariowalk.png",
+    right: "../assets/mariowalk1.png",
   },
   run: {
-    left: "../images/mariorun.png",
-    right: "../images/mariorun1.png",
+    left: "../assets/mariorun.png",
+    right: "../assets/mariorun1.png",
   },
   jump: {
-    left: "../images/mariojump.png",
-    right: "../images/mariojump1.png"
+    left: "../assets/mariojump.png",
+    right: "../assets/mariojump1.png"
   }
 };
 
-var groundImage = '../images/ground.png';
+var groundImage = '../assets/ground.png';
 
 var mario = new Entity(46, 80);
 mario.setController(new UserInput());
 mario.addBehavior(new Animator(marioImages));
 mario.addBehavior(new Physics());
-world.addEntity(mario);
 mario.walkSpeed = 5;
 mario.jumpSpeed = 25;
 mario.x(100);
 mario.y(300);
+
+world.addEntity(mario);
+world.follow(mario);
 
 var ground = new Entity(50000, 20);
 ground.addBehavior(new StaticAnimator(groundImage));
@@ -71,11 +72,4 @@ for (let i = 0; i < 10; ++i) {
   cpumario.y(150);
 }
 
-var view = new View(mario);
-
-function gameLoop() {
-  world.update();
-  view.update();
-}
-
-var _ = setInterval(gameLoop, 1000/60);
+world.start();
